@@ -1,0 +1,44 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx:${NGINX_VERSION}
+    container_name: nginx
+    volumes:
+      - ./backend:/var/www/oktrening
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    ports:
+      - 80:80
+    networks:
+      - common_network
+    depends_on:
+      - backend
+      - db
+
+  backend:
+    build: docker/backend
+    container_name: backend
+    working_dir: /var/www/oktrening
+    volumes:
+      - ./backend:/var/www/oktrening
+    networks:
+      - common_network
+    depends_on:
+      - db
+
+  db:
+    image: mysql:${MYSQL_VERSION}
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - ${MYSQL_PORT}:3306
+    volumes:
+      - ./docker/mysql/data:/var/lib/mysql
+
+networks:
+  common_network:
+    driver: bridge
