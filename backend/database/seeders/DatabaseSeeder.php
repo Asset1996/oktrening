@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Modules\Products\Models\Product;
 use Modules\System\Models\User;
 use Modules\Categories\Models\Category;
 
@@ -46,5 +47,152 @@ class DatabaseSeeder extends Seeder
         $Category231 = Category::createCategory('Big Bags', $Category23->id);
         $Category232 = Category::createCategory('Medium Bags', $Category23->id);
         $Category233 = Category::createCategory('Small Bags', $Category23->id);
+
+        //Trousers
+        Product::createProduct(
+            'Decathlon Quechua SH100', $Category12->id, 22000,
+            'Universal trousers'
+        );
+        Product::createProduct(
+            'AL-HAKIM 2000 khaki', $Category12->id, 14000,
+            'Regular trousers'
+        );
+
+        //Tapered Trousers
+        Product::createProduct(
+            'Decathlon QUECHUA NH100', $Category121->id, 10000,
+            'Regular trousers'
+        );
+        Product::createProduct(
+            'Nike Tech Fleece CU4495', $Category121->id, 10000,
+            'Regular trousers'
+        );
+        Product::createProduct(
+            'Decathlon DOMYOS CU11234', $Category121->id, 19000,
+            'Regular trousers'
+        );
+
+        //Loose Trousers
+        Product::createProduct(
+            'Alamata ExtraWarmLeggings', $Category122->id, 19000,
+            'Regular trousers'
+        );
+        Product::createProduct(
+            'Леггинсы Fashion 9801', $Category122->id, 19000,
+            'Regular trousers'
+        );
+
+        //Shoes
+        Product::createProduct(
+            'Decathlon QUECHUA SH100 X', $Category11->id, 19000,
+            'Regular shoes'
+        );
+        Product::createProduct(
+            'Decathlon Quechua SH100 Warm', $Category11->id, 17000,
+            'Regular shoes'
+        );
+
+        //Summer Shoes
+        Product::createProduct(
+            'Decathlon QUECHUA 8367614', $Category111->id, 9000,
+            'Regular shoes'
+        );
+        Product::createProduct(
+            'Alessio Nesca M8201992', $Category111->id, 9000,
+            'Regular shoes'
+        );
+
+        //Demi-season Shoes
+        Product::createProduct(
+            'T.TACCARDI 25707010', $Category112->id, 34000,
+            'Regular shoes'
+        );
+        Product::createProduct(
+            'Alessio Nesca M8201994', $Category112->id, 34000,
+            'Regular shoes'
+        );
+
+        //Winter Shoes
+        Product::createProduct(
+            'GBR A90-3W черный', $Category113->id, 40000,
+            'Regular shoes'
+        );
+        Product::createProduct(
+            'Adidas Hoops 2.0 Mid', $Category113->id, 40000,
+            'Regular shoes'
+        );
+        Product::createProduct(
+            'Boot', $Category113->id, 40000,
+            'Regular shoes'
+        );
+
+        //Hats
+        Product::createProduct(
+            'Шапка женская 202040', $Category21->id, 5000,
+            'Regular hat'
+        );
+        Product::createProduct(
+            'Tactical шапка 07862', $Category21->id, 7000,
+            'Regular hat'
+        );
+
+        //Travellers Hats
+        Product::createProduct(
+            'VIVAGOODS Пикачу', $Category211->id, 7500,
+            'Regular hat'
+        );
+        Product::createProduct(
+            'VIVAGOODS маска-шапка', $Category211->id, 7500,
+            'Regular hat'
+        );
+
+        //Natural Skin Hats
+        Product::createProduct(
+            'Decathlon шапка 2130173', $Category212->id, 12000,
+            'Regular hat'
+        );
+        Product::createProduct(
+            'Балаклава MU-0529', $Category212->id, 10000,
+            'Regular hat'
+        );
+        Product::createProduct(
+            'MS балаклава M&G', $Category212->id, 13000,
+            'Regular hat'
+        );
+
+
+        //Skirts
+        Product::createProduct(
+            'IN STYLE 1212', $Category22->id, 15000,
+            'Regular skirt'
+        );
+        Product::createProduct(
+            'THE BEST WISH BG9102256', $Category22->id, 14000,
+            'Regular skirt'
+        );
+
+        //Long Skirts
+        Product::createProduct(
+            'TUBA Tex 01342-3TTS черный', $Category221->id, 13000,
+            'Regular skirt'
+        );
+        Product::createProduct(
+            'Jazu Brand SB1175-2', $Category221->id, 15000,
+            'Regular skirt'
+        );
+
+        //Short Skirts
+        Product::createProduct(
+            'Koton 3WKG70047AK992', $Category222->id, 9000,
+            'Regular skirt'
+        );
+        Product::createProduct(
+            'ELIS SK0220', $Category222->id, 21000,
+            'Regular skirt'
+        );
+        Product::createProduct(
+            'ELIS SK4477', $Category22->id, 13000,
+            'Regular skirt'
+        );
     }
 }

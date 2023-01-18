@@ -1,13 +1,14 @@
 <?php
 
-namespace Modules\Categories\Http\Controllers;
+namespace Modules\Products\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
-use Modules\Categories\Services\CategoryService;
+use Modules\Products\Services\ProductService;
+use Modules\Products\Http\Requests\GetProductsRequest;
 
-class CategoryController extends BaseController
+class ProductController extends BaseController
 {
     public function __construct()
     {
@@ -15,14 +16,14 @@ class CategoryController extends BaseController
             ->only('store', 'update', 'destroy');
     }
     /**
-     * Gets list of all categories as tree.
+     * Gets list of all products.
      *
-     * @param Request $Request
+     * @param GetProductsRequest $Request
      * @return JsonResponse
      */
-    public function index(Request $Request)
+    public function index(GetProductsRequest $Request)
     {
-        return (new CategoryService)
+        return (new ProductService)
             ->setRequest($Request)
             ->getList();
     }
@@ -35,7 +36,7 @@ class CategoryController extends BaseController
      */
     public function store(Request $Request)
     {
-        return (new CategoryService)
+        return (new ProductService)
             ->setRequest($Request)
             ->create();
     }
@@ -48,7 +49,7 @@ class CategoryController extends BaseController
      */
     public function show(int $Id)
     {
-        return (new CategoryService)
+        return (new ProductService)
             ->show($Id);
     }
 
@@ -60,7 +61,7 @@ class CategoryController extends BaseController
      */
     public function destroy(int $Id)
     {
-        return (new CategoryService)
+        return (new ProductService)
             ->delete($Id);
     }
 }

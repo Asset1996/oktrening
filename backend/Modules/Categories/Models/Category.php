@@ -30,12 +30,12 @@ class Category extends Model
      */
     public static function createCategory(string $CategoryName, int $ParentId = null): Category
     {
-        $category = new self();
-        $category->category_name = $CategoryName;
-        $category->parent_id = $ParentId;
-        $category->save();
+        $Category = new self();
+        $Category->category_name = $CategoryName;
+        $Category->parent_id = $ParentId;
+        $Category->save();
 
-        return $category;
+        return $Category;
     }
 
     /**
