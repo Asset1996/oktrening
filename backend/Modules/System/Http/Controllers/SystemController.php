@@ -5,16 +5,32 @@ namespace Modules\System\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Hash;
+use Modules\System\Models\User;
 
 class SystemController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * @return Renderable
+     * @return
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('system::index');
+        $user= User::where('email', $request->email)->first();
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            return response([
+                'message' => ['These credentials do not match our records.']
+            ], 404);
+        }
+
+        $token = $user->createToken('my-token')->plainTextToken;
+
+        $response = [
+            'user' => $user,
+            'token' => $token
+        ];
+
+        return response($response, 201);
     }
 
     /**

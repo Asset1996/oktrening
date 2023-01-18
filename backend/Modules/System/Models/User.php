@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace Modules\System\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,6 +11,8 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $table = 'users';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -19,6 +21,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'phone',
         'password',
     ];
 
@@ -28,16 +31,26 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+        'password'
     ];
 
     /**
-     * The attributes that should be cast.
+     * Creates new user in DB.
      *
-     * @var array<string, string>
+     * @param string $name
+     * @param string $email
+     * @param string $password
+     * @return User
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public static function createUser($name, $email, $password, $phone = null): User
+    {
+        $user = new self();
+        $user->name = $name;
+        $user->email = $email;
+        $user->password = $password;
+        $user->phone = $phone;
+        $user->save();
+
+        return $user;
+    }
 }

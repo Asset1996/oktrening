@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use Modules\System\Http\Controllers\SystemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,11 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/system', function (Request $request) {
-    return $request->user();
+Route::group(['prefix' => 'system'], function() {
+    Route::post('/login', 'SystemController@index');
+
+    Route::middleware('auth:sanctum')->get('/test', function (Request $request) {
+        print_r(\Auth::user());
+        exit();
+    });
 });
