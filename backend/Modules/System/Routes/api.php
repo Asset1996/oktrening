@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Modules\System\Http\Controllers\SystemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +15,7 @@ use Modules\System\Http\Controllers\SystemController;
 */
 
 Route::group(['prefix' => 'system'], function() {
-    Route::post('/login', 'SystemController@index');
+    Route::post('/login', 'AuthController@authenticate');
 
     Route::middleware('auth:sanctum')->get('/test', function (Request $request) {
         print_r(\Auth::user());
