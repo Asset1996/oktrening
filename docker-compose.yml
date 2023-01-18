@@ -44,3 +44,13 @@ services:
       - ${MYSQL_PORT}:3306
     volumes:
       - ./docker/mysql/data:/var/lib/mysql
+  
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    restart: always
+    ports:
+      - ${REDIS_PORT}:6379
+    command: redis-server --save 20 1 --loglevel warning --requirepass "${REDIS_PASSWORD}"
+    volumes: 
+      - ./docker/redis/data:/data

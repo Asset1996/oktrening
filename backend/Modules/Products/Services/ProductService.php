@@ -51,7 +51,7 @@ class ProductService
     /**
      * Gets single record from DB by Id.
      *
-     * @param $Slug
+     * @param string $Slug
      * @return JsonResponse
      */
     public function show(string $Slug)
@@ -68,7 +68,7 @@ class ProductService
     /**
      * Deletes product from DB by Id.
      *
-     * @param $Slug
+     * @param string $Slug
      * @return JsonResponse
      */
     public function delete(string $Slug)
