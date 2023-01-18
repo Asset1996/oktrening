@@ -5,6 +5,7 @@ namespace Modules\Products\Http\Controllers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController;
+use Modules\Products\Http\Requests\AddProductsRequest;
 use Modules\Products\Services\ProductService;
 use Modules\Products\Http\Requests\GetProductsRequest;
 
@@ -34,7 +35,7 @@ class ProductController extends BaseController
      * @param Request $Request
      * @return JsonResponse
      */
-    public function store(Request $Request)
+    public function store(AddProductsRequest $Request)
     {
         return (new ProductService)
             ->setRequest($Request)
@@ -44,24 +45,24 @@ class ProductController extends BaseController
     /**
      * Show the specified resource.
      *
-     * @param int $Id
+     * @param string $Slug
      * @return JsonResponse
      */
-    public function show(int $Id)
+    public function show(string $Slug)
     {
         return (new ProductService)
-            ->show($Id);
+            ->show($Slug);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $Id
+     * @param string $Id
      * @return JsonResponse
      */
-    public function destroy(int $Id)
+    public function destroy(string $Slug)
     {
         return (new ProductService)
-            ->delete($Id);
+            ->delete($Slug);
     }
 }

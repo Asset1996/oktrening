@@ -51,11 +51,12 @@ class ProductService
     /**
      * Gets single record from DB by Id.
      *
+     * @param $Slug
      * @return JsonResponse
      */
-    public function show($Id)
+    public function show(string $Slug)
     {
-        $Product = Product::findorfail($Id);
+        $Product = Product::where('slug', $Slug)->firstOrFail();
 
         $Response['Response'] = [
             'Product' => $Product
@@ -67,11 +68,12 @@ class ProductService
     /**
      * Deletes product from DB by Id.
      *
+     * @param $Slug
      * @return JsonResponse
      */
-    public function delete($Id)
+    public function delete(string $Slug)
     {
-        $Product = Product::findorfail($Id);
+        $Product = Product::where('slug', $Slug)->firstOrFail();
         $Product->delete();
 
         $Response['Response'] = [
