@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['prefix' => 'cart'], function() {
-    Route::get('show', 'CartController@show');
-    Route::post('add', 'CartController@add');
-    Route::patch('update', 'CartController@update');
-    Route::delete('delete/{slug}', 'CartController@delete');
-    Route::delete('clear', 'CartController@clear');
+Route::group(['prefix' => 'orders'], function() {
+    Route::post('confirm-order', 'OrdersController@confirm');
 });

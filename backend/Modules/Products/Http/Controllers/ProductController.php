@@ -57,7 +57,7 @@ class ProductController extends BaseController
     /**
      * Remove the specified resource from storage.
      *
-     * @param string $Id
+     * @param string $Slug
      * @return JsonResponse
      */
     public function destroy(string $Slug)

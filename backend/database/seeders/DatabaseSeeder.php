@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Modules\Products\Models\Product;
 use Modules\System\Models\User;
 use Modules\Categories\Models\Category;
+use Modules\Orders\Models\OrderStatus;
 
 class DatabaseSeeder extends Seeder
 {
@@ -194,5 +195,9 @@ class DatabaseSeeder extends Seeder
             'ELIS SK4477', $Category22->id, 13000,
             'Regular skirt'
         );
+
+        OrderStatus::createOrderStatus('Created');
+        OrderStatus::createOrderStatus('Processing');
+        OrderStatus::createOrderStatus('Delivered');
     }
 }

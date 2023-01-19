@@ -2,5 +2,6 @@
     "Categories": true,
     "Products": true,
     "Cart": true,
-    "System": true
+    "System": true,
+    "Orders": true
 }

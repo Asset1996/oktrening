@@ -2,78 +2,71 @@
 
 namespace Modules\Cart\Http\Controllers;
 
-use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\BaseController;
+use Modules\Cart\Http\Requests\AddCartRequest;
+use Modules\Cart\Services\CartService;
 
-class CartController extends Controller
+class CartController extends BaseController
 {
     /**
-     * Display a listing of the resource.
-     * @return Renderable
+     * Shows all products in cart.
+     *
+     * @return JsonResponse
      */
-    public function index()
+    public function show()
     {
-        return view('cart::index');
+        return (new CartService)
+            ->showCart();
     }
 
     /**
-     * Show the form for creating a new resource.
-     * @return Renderable
+     * Adds product into cart.
+     *
+     * @param Request $Request
+     * @return JsonResponse
      */
-    public function create()
+    public function add(AddCartRequest $Request)
     {
-        return view('cart::create');
+        return (new CartService)
+            ->setRequest($Request)
+            ->addToCart();
     }
 
     /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
+     * Updates product quantity in the cart.
+     *
+     * @param Request $Request
+     * @return JsonResponse
      */
-    public function store(Request $request)
+    public function update(Request $Request)
     {
-        //
+        return (new CartService)
+            ->setRequest($Request)
+            ->updateCart();
     }
 
     /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
+     * Removes specific product from cart.
+     *
+     * @param string $Slug
+     * @return JsonResponse
      */
-    public function show($id)
+    public function delete($Slug)
     {
-        return view('cart::show');
+        return (new CartService)
+            ->deleteFromCart($Slug);
     }
 
     /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
+     * Removes all products from cart.
+     *
+     * @return JsonResponse
      */
-    public function edit($id)
+    public function clear()
     {
-        return view('cart::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
-    public function destroy($id)
-    {
-        //
+        return (new CartService)
+            ->clearCart();
     }
 }

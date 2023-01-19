@@ -53,14 +53,14 @@ class CreateAllTables extends Migration
         Schema::create('product_attributes_values', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('attribute_id')->unsigned();
-            $table->integer('product_id')->unsigned();
+            $table->string('product_slug');
             $table->string('value');
             $table->timestamps();
 
             $table->foreign('attribute_id')->references('id')
                 ->on('attributes')
                 ->onDelete('cascade');
-            $table->foreign('product_id')->references('id')
+            $table->foreign('product_slug')->references('slug')
                 ->on('products')
                 ->onDelete('cascade');
         });
@@ -74,14 +74,14 @@ class CreateAllTables extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned()->nullable();
-            $table->string('order_sum');
-            $table->string('order_products')->comment('Comma separated list of products bought');
+            $table->integer('order_sum')->comment('Total sum of all products ordered');
+            $table->integer('order_quantity')->comment('Total quantity of all products ordered');
             $table->string('client_email')->nullable();
             $table->string('client_phone')->nullable();
             $table->integer('order_status_id')
                 ->unsigned()
                 ->default('0')
-                ->comment('0-created,1-processing,2-delivered');
+                ->comment('1-created,2-processing,3-delivered');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')
@@ -89,6 +89,17 @@ class CreateAllTables extends Migration
                 ->onDelete('set null');
             $table->foreign('order_status_id')->references('id')
                 ->on('order_statuses');
+        });
+
+        Schema::create('order_products', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('order_id')->unsigned();
+            $table->string('product_slug');
+            $table->integer('quantity');
+            $table->timestamps();
+
+            $table->foreign('order_id')->references('id')->on('orders');
+            $table->foreign('product_slug')->references('slug')->on('products');
         });
     }
 
