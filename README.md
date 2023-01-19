@@ -1,5 +1,4 @@
-
-Oktrening test tast.
+Oktrening test task.
 
 
 1. After cloning the project, build images and run containers:
@@ -35,4 +34,5 @@ PphMyAdmin runs on port 8080
 MySQQL runs on standard 3306 port
 Redis runs on standard 6379 port
 
+PhpMyAdmin login: root, password: qwerty123_
 Postman documentation is in file Documentation.json
