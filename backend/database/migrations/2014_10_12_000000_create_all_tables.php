@@ -63,6 +63,8 @@ class CreateAllTables extends Migration
             $table->foreign('product_slug')->references('slug')
                 ->on('products')
                 ->onDelete('cascade');
+
+            $table->unique(['attribute_id', 'product_slug']);
         });
 
         Schema::create('order_statuses', function (Blueprint $table) {
@@ -100,6 +102,8 @@ class CreateAllTables extends Migration
 
             $table->foreign('order_id')->references('id')->on('orders');
             $table->foreign('product_slug')->references('slug')->on('products');
+
+            $table->unique(['order_id', 'product_slug']);
         });
     }
 

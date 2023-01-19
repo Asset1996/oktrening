@@ -15,4 +15,5 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'orders'], function() {
     Route::post('confirm-order', 'OrdersController@confirm');
+    Route::get('list', 'OrdersController@list')->middleware('auth:sanctum');
 });

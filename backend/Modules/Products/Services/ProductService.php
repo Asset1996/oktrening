@@ -14,7 +14,7 @@ class ProductService
      *
      * @return JsonResponse
      */
-    public function getList()
+    public function getProducts()
     {
         $Product = Product::CategoryId($this->Request->get('category_id'))
             ->ProductPriceFrom($this->Request->get('product_price_from'))
@@ -33,7 +33,7 @@ class ProductService
      *
      * @return JsonResponse
      */
-    public function create()
+    public function createProduct()
     {
         $Data = $this->Request['data'];
 
@@ -54,7 +54,7 @@ class ProductService
      * @param string $Slug
      * @return JsonResponse
      */
-    public function show(string $Slug)
+    public function showProduct(string $Slug)
     {
         $Product = Product::where('slug', $Slug)->firstOrFail();
 
@@ -71,7 +71,7 @@ class ProductService
      * @param string $Slug
      * @return JsonResponse
      */
-    public function delete(string $Slug)
+    public function deleteProduct(string $Slug)
     {
         $Product = Product::where('slug', $Slug)->firstOrFail();
         $Product->delete();

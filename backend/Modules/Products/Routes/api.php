@@ -15,4 +15,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'products'], function() {
     Route::resource('product', 'ProductController');
+
+    Route::group(['middleware' => 'auth:sanctum'], function() {
+        Route::resource('attribute', 'AttributeController');
+
+        Route::post('attribute-set-value', 'AttributeValueController@set');
+        Route::delete('attribute-unset-value', 'AttributeValueController@unset');
+    });
+
 });

@@ -41,7 +41,7 @@ class OrderService
         foreach ($CartProducts as $Slug => $Product){
             OrderProduct::createOrderProduct($Order->id, $Slug, $Product['Quantity']);
         }
-        
+
         Redis::del('Products');
 
         $Response['Response'] = [
@@ -53,10 +53,27 @@ class OrderService
     }
 
     /**
+     * Get list of the current authenticated user.
+     *
+     * @return JsonResponse
+     */
+    public function getMyOrders()
+    {
+        $Orders = Order::getOrdersByUserId();
+
+        $Response['Response'] = [
+            'Orders' => $Orders,
+            'Message' => 'Order confirmed. Stay with us!'
+        ];
+
+        return response()->json($Response, 200);
+    }
+
+    /**
      * Setter for $request variable.
      *
      * @param $Request
-     * @return CartService
+     * @return OrderService
      */
     public function setRequest($Request)
     {

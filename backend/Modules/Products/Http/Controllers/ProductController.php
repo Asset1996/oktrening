@@ -26,7 +26,7 @@ class ProductController extends BaseController
     {
         return (new ProductService)
             ->setRequest($Request)
-            ->getList();
+            ->getProducts();
     }
 
     /**
@@ -39,7 +39,7 @@ class ProductController extends BaseController
     {
         return (new ProductService)
             ->setRequest($Request)
-            ->create();
+            ->createProduct();
     }
 
     /**
@@ -51,7 +51,7 @@ class ProductController extends BaseController
     public function show(string $Slug)
     {
         return (new ProductService)
-            ->show($Slug);
+            ->showProduct($Slug);
     }
 
     /**
@@ -63,6 +63,6 @@ class ProductController extends BaseController
     public function destroy(string $Slug)
     {
         return (new ProductService)
-            ->delete($Slug);
+            ->deleteProduct($Slug);
     }
 }

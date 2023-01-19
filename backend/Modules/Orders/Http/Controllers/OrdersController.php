@@ -12,6 +12,7 @@ class OrdersController extends BaseController
     /**
      * Client confirms the order.
      *
+     * @param Request $Request
      * @return JsonResponse
      */
     public function confirm(Request $Request)
@@ -19,5 +20,16 @@ class OrdersController extends BaseController
         return (new OrderService())
             ->setRequest($Request)
             ->confirmOrder();
+    }
+
+    /**
+     * Get list of the current authenticated user.
+     *
+     * @return JsonResponse
+     */
+    public function list()
+    {
+        return (new OrderService())
+            ->getMyOrders();
     }
 }
