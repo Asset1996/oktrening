@@ -32,7 +32,7 @@ class ProductController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $Request
+     * @param AddProductsRequest $Request
      * @return JsonResponse
      */
     public function store(AddProductsRequest $Request)

@@ -62,8 +62,7 @@ class OrderService
         $Orders = Order::getOrdersByUserId();
 
         $Response['Response'] = [
-            'Orders' => $Orders,
-            'Message' => 'Order confirmed. Stay with us!'
+            'Orders' => $Orders
         ];
 
         return response()->json($Response, 200);

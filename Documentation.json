@@ -1,0 +1,753 @@
+{
+	"info": {
+		"_postman_id": "de981728-d386-4281-8f5b-a5ee77ce4533",
+		"name": "Oktrening test task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"data\": {\n        \"email\": \"test@mail.com\",\n        \"password\": \"1234\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/api/system/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"system",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Category List",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"data\": {\n        \"email\": \"test@mail.com\",\n        \"password\": \"1234\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/api/categories/category",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"categories",
+						"category"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Category Show",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"data\": {\n        \"email\": \"test@mail.com\",\n        \"password\": \"1234\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/api/categories/category/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"categories",
+						"category",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Category Store",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"data\": {\n        \"category_name\": \"testcat\",\n        \"parent_id\": 23\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/api/categories/category",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"categories",
+						"category"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Category Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"data\": {\n        \"email\": \"test@mail.com\",\n        \"password\": \"1234\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/api/categories/category/23",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"categories",
+						"category",
+						"23"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Product List",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/api/products/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"products",
+						"product"
+					],
+					"query": [
+						{
+							"key": "product_price_from",
+							"value": "14000",
+							"disabled": true
+						},
+						{
+							"key": "product_price_to",
+							"value": "14500",
+							"disabled": true
+						},
+						{
+							"key": "category_id",
+							"value": "6",
+							"disabled": true
+						},
+						{
+							"key": "product_name",
+							"value": "апка",
+							"disabled": true
+						},
+						{
+							"key": "material",
+							"value": "metal",
+							"disabled": true
+						},
+						{
+							"key": "lenght",
+							"value": "30",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Product Show",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/api/products/product/63c8f08329732",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"products",
+						"product",
+						"63c8f08329732"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Product Store",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"data\": {\n        \"category_id\": 4,\n        \"product_name\": \"testp\",\n        \"product_price\": 1111,\n        \"product_description\": \"testp desc\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/api/products/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"products",
+						"product"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Product Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/api/products/product/63c7fdcf1fd2e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"products",
+						"product",
+						"63c7fdcf1fd2e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Attributes List",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/api/products/attribute",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"products",
+						"attribute"
+					],
+					"query": [
+						{
+							"key": "product_price_from",
+							"value": "14000",
+							"disabled": true
+						},
+						{
+							"key": "product_price_to",
+							"value": "14500",
+							"disabled": true
+						},
+						{
+							"key": "category_id",
+							"value": "8",
+							"disabled": true
+						},
+						{
+							"key": "product_name",
+							"value": "апка",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Attributes Show",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/api/products/attribute/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"products",
+						"attribute",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Attributes Store",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"data\": {\n        \"attribute_name\": \"Brand\",\n        \"attribute_description\": \"Brand of product\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/api/products/attribute",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"products",
+						"attribute"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Attributes Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/api/products/attribute/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"products",
+						"attribute",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Attribute Values Set",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"data\": {\n        \"attribute_id\": 3,\n        \"product_slug\": \"63c8f08326256\",\n        \"value\": \"Metal\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/api/products/attribute-set-value",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"products",
+						"attribute-set-value"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Attribute Values Unset",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"data\": {\n        \"attribute_id\": 1,\n        \"product_slug\": \"63c8f08328a7b\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/api/products/attribute-unset-value",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"products",
+						"attribute-unset-value"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cart Show",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/api/cart/show",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"cart",
+						"show"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cart Add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"data\": {\n        \"slug\": \"63c8d14c80554\",\n        \"quantity\": 5\n    } \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/api/cart/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"cart",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cart Update",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"data\": {\n        \"slug\": \"63c8d14c738b2\",\n        \"quantity\": 2\n    } \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/api/cart/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"cart",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cart Clear",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/api/cart/clear",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"cart",
+						"clear"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cart Delete Product",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/api/cart/delete/63c8490faf4cc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"cart",
+						"delete",
+						"63c8490faf4cc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Orders List",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"data\": {\n        \"email\": \"laravel@mail.com\",\n        \"phone\": null\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/api/orders/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"orders",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Order confirm",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"data\": {\n        \"email\": \"laravel@mail.com\",\n        \"phone\": null\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/api/orders/confirm-order",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"orders",
+						"confirm-order"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "Bearer 1|XpE1zicVeSDlshq44uyeLiaq3QtFh4GqC5e8lPBF",
+			"type": "default"
+		}
+	]
+}

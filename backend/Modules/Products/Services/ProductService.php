@@ -4,6 +4,7 @@ namespace Modules\Products\Services;
 
 use Illuminate\Http\JsonResponse;
 use Modules\Products\Models\Product;
+use Modules\Products\Models\ProductAttributeValue;
 
 class ProductService
 {
@@ -16,13 +17,16 @@ class ProductService
      */
     public function getProducts()
     {
-        $Product = Product::CategoryId($this->Request->get('category_id'))
-            ->ProductPriceFrom($this->Request->get('product_price_from'))
-            ->ProductPriceTo($this->Request->get('product_price_to'))
-            ->ProductName($this->Request->get('product_name'));
+        $Product = (new Product())->setStandardFilters()
+            ->getProducts($this->Request);
+
+        $Product = $Product->each(function ($item){
+            $AttributeValues = ProductAttributeValue::getByProductSlug($item->slug);
+            $item['custom_attributes'] = $AttributeValues;
+        });
 
         $Response['Response'] = [
-            'Products' => $Product->get()
+            'Products' => $Product
         ];
 
         return response()->json($Response, 200);
@@ -57,6 +61,14 @@ class ProductService
     public function showProduct(string $Slug)
     {
         $Product = Product::where('slug', $Slug)->firstOrFail();
+        $AttributeValues = ProductAttributeValue::select(
+            'product_attributes_values.value', 'attributes.attribute_name'
+        )
+            ->leftJoin('attributes', 'attributes.id', 'product_attributes_values.attribute_id')
+            ->where('product_attributes_values.product_slug', $Product->slug)
+            ->get();
+
+        $Product['custom_attributes'] = $AttributeValues;
 
         $Response['Response'] = [
             'Product' => $Product

@@ -41,4 +41,20 @@ class ProductAttributeValue extends Model
 
         return $ProductAttributeValue;
     }
+
+    /**
+     * Gets the list of product attributes and values by product slug.
+     *
+     * @param $Slug
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public static function getByProductSlug($Slug)
+    {
+        return self::select(
+            'product_attributes_values.value', 'attributes.attribute_name'
+        )
+            ->leftJoin('attributes', 'attributes.id', 'product_attributes_values.attribute_id')
+            ->where('product_attributes_values.product_slug', $Slug)
+            ->get();
+    }
 }

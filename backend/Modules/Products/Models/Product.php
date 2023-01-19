@@ -25,6 +25,41 @@ class Product extends Model
     ];
 
     /**
+     * @var $StandardFilters - are all filters, except custom filters.
+     */
+    protected $StandardFilters;
+
+    /**
+     * Setter for $StandardFilters variable
+     * $StandardFilters - are all filters, except custom filters.
+     *
+     * @param $Request
+     * @return Product
+     */
+    public function setStandardFilters()
+    {
+        $this->StandardFilters = array_merge(
+            app(self::class)->getFillable(),
+            ['product_price_from', 'product_price_to']
+        );
+        return $this;
+    }
+
+    public function scopeCustomFilters($query, $CustomFilers)
+    {
+        $query->leftJoin(
+            'product_attributes_values',
+            'product_attributes_values.product_slug',
+            'products.slug'
+        )
+            ->leftJoin('attributes', 'attributes.id', 'product_attributes_values.attribute_id');
+        foreach ($CustomFilers as $FilterName => $FilterValue) {
+            $query->where('attributes.attribute_name', $FilterName)
+                ->where('product_attributes_values.value', $FilterValue);
+        }
+    }
+
+    /**
      * Scope a query to filter by category_id.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
@@ -33,7 +68,7 @@ class Product extends Model
     public function scopeCategoryId($query, $CategoryId)
     {
         if (!is_null($CategoryId)) {
-            $query->where('category_id', $CategoryId);
+            $query->where('products.category_id', $CategoryId);
         }
     }
 
@@ -98,5 +133,26 @@ class Product extends Model
         $Product->save();
 
         return $Product;
+    }
+
+    /**
+     * Get filtered products.
+     *
+     * @param $Request
+     * @return Product
+     */
+    public function getProducts($Request)
+    {
+        return $this->select(
+            'products.id', 'products.slug', 'products.product_name', 'products.category_id', 'products.product_price',
+            'products.product_description'
+        )
+            ->CategoryId($Request->get('category_id'))
+            ->ProductPriceFrom($Request->get('product_price_from'))
+            ->ProductPriceTo($Request->get('product_price_to'))
+            ->ProductName($Request->get('product_name'))
+            ->CustomFilters($Request->except($this->StandardFilters))
+            ->groupBy('products.id')
+            ->get();
     }
 }
