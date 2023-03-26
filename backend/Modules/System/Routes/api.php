@@ -16,9 +16,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'system'], function() {
     Route::post('/login', 'AuthController@authenticate');
-
-    Route::middleware('auth:sanctum')->get('/test', function (Request $request) {
-        print_r(\Auth::user());
-        exit();
-    });
 });
